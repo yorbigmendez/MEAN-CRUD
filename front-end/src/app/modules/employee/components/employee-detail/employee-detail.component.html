@@ -1,0 +1,118 @@
+<div class="panel panel-default container px-2 py-2">
+  <div class="panel-body">
+    <form [formGroup]="employeeForm" class="py-2 px-4 my-2">
+      <div class="row">
+        <div class="col-6">
+          <!-- Profile Picture -->
+          <div class="form-group">
+            <div class="row">
+              <label for="picture" class="col-sm-12 col-form-label required-field">Picture:</label>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <app-file-upload #imageUpload fileType="image/*" [imageSrc]="imgSrc" [viewMode]="isViewMode"></app-file-upload>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <!-- Employee ID -->
+          <div class="form-group">
+            <div class="row">
+              <label for="Name" class="col-sm-5 col-form-label required-field">Employee ID:</label>
+              <div class="col-sm-7">
+                <input class="form-control" id="employeeId" formControlName="employeeId">
+              </div>
+            </div>
+          </div>
+          <!-- Name -->
+          <div class="form-group">
+            <div class="row">
+              <label for="Name" class="col-sm-5 col-form-label required-field">Name:</label>
+              <div class="col-sm-7">
+                <input class="form-control" id="name" formControlName="name">
+                <div class="text-danger form-control-feedback" *ngIf="name.invalid && name.touched">
+                  This Field is Required (
+                  <span>*</span>)
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Phone Number-->
+          <div class="form-group">
+            <div class="row">
+              <label for="phoneNumber" class="col-sm-5 col-form-label required-field">Phone Number:</label>
+              <div class="col-sm-7">
+                <input class="form-control" id="phoneNumber" formControlName="phoneNumber">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="offset-md-5">
+              <div class="text-danger form-control-feedback" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+                <p class="pl-3" *ngIf="phoneNumber.errors['required']">This Field is Required (
+                  <span>*</span>)</p>
+                <p class="pl-3" *ngIf="phoneNumber.errors['invalidPhoneFormat']">Incorrect phone format. Must be ###-###-####</p>
+              </div>
+            </div>
+          </div>
+          <!-- Email -->
+          <div class="form-group">
+            <div class="row">
+              <label for="email" class="col-sm-5 col-form-label required-field">Email:</label>
+              <div class="col-sm-7">
+                <input class="form-control" id="email" formControlName="email">
+                <div class="text-danger form-control-feedback" *ngIf="email.invalid && email.touched">
+                  This Field is Required (
+                  <span>*</span>)
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Hire Date -->
+          <div class="form-group">
+            <div class="row">
+              <label for="hireDate" class="col-sm-5 col-form-label required-field">Hire Date:</label>
+              <div class="col-sm-7">
+                <input class="form-control" id="hireDate" formControlName="hireDate">
+              </div>
+            </div>
+            <div class="row">
+              <div class="offset-md-5">
+                <div class="text-danger form-control-feedback" *ngIf="hireDate.invalid && hireDate.touched">
+                  <p class="pl-3" *ngIf="hireDate.errors['required']">This Field is Required (
+                    <span>*</span>)</p>
+                  <p class="pl-3" *ngIf="hireDate.errors['invalidDateFormat']">Incorrect date format. Must be mm/dd/yyyy</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Manager Id -->
+          <div class="form-group">
+            <div class="row">
+              <label for="managerId" class="col-sm-5 col-form-label required-field">Manager ID:</label>
+              <div class="col-sm-7">
+                <input appDigitOnly class="form-control" id="managerId" formControlName="managerId">
+                <div class="text-danger form-control-feedback" *ngIf="managerId.invalid && managerId.touched">
+                  This Field is Required (
+                  <span>*</span>)
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <label class="col-sm col-form-label">*Months working for the company: {{totalMonths}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <hr>
+  <div class="panel-footer text-right">
+    <button *ngIf="!isViewMode" type="button" class="btn btn-outline-secondary pull-right" (click)="discardChangesAction()">Discard Changes</button>
+    <button *ngIf="isViewMode" type="button" class="btn btn-outline-warning pull-right ml-2" (click)="editClickAction()">Edit</button>
+    <button *ngIf="!isViewMode" type="button" class="btn btn-outline-primary pull-right ml-2" (click)="saveClickAction()">Save</button>
+  </div>
+</div>

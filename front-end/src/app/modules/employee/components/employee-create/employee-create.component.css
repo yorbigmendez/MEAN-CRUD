@@ -1,0 +1,12 @@
+.required-field::after{
+    content: '*';
+    color: #dc3545;
+    vertical-align: sub;
+    font-size: 16px;
+    padding-left: 10px;
+    font-weight: bolder;
+}
+
+.bg-color {
+    background: #E6E6FA;
+}

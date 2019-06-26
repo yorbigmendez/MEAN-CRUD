@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+  <div class="panel-heading mb-2">
+    <h1>Employees</h1>
+  </div>
+  <div class="panel-body my-2">
+    <div class="row py-2">
+      <div class="col-3">
+        <select class="form-control" [(ngModel)]="selectedCriteria" id="criteria">
+          <option *ngFor="let item of criterias" [ngValue]="item">{{item.criteria}}</option>
+        </select>
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Filter..." (keyup)="search()">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive pt-2 border px-2">
+          <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th class="text-center">Image</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Employee Id</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of filterData">
+
+                <td class="text-center" (click)="showDetails(employee)">
+                  <img class="image-preview image-fluid" [src]="employee.picture">
+                </td>
+                <td class="text-center" (click)="showDetails(employee)">{{employee.name}}</td>
+                <td class="text-center" (click)="showDetails(employee)">{{employee.employeeId}}</td>
+                <td class="text-center">
+                  <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

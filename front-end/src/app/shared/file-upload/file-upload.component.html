@@ -1,0 +1,4 @@
+<div class="image-upload">
+  <img [src]="imageSrc" class="file responsive"/>
+  <input *ngIf="!viewMode" class="input file pt-1" name="imageUrl" type="file" [accept]="fileType" (change)="handleFileChange($event)" />
+</div> 
